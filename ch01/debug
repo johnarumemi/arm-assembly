@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+INPUT_FILENAME="hello_world.s"
+OUTPUT_FILENAME="HelloWorld"
+
+OUTPUT_DIR="out"
+
+objdump -s -d -M no-aliases "./$OUTPUT_DIR/$OUTPUT_FILENAME.o"
+objdump -s -d -M no-aliases HelloWorld.o

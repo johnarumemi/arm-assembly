@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Run this script via bash -x ./build
+
+INPUT_FILENAME="hello_world.s"
+OUTPUT_FILENAME="HelloWorld"
+
+OUTPUT_DIR="out"
+
+if [ ! -d $OUTPUT_DIR ]; then
+    mkdir -p $OUTPUT_DIR
+fi
+
+if [ -f "./${OUTPUT_DIR}/${OUTPUT_FILENAME}.o" ]; then
+    # echo "Removing old HelloWorld.o"
+    rm "./$OUTPUT_DIR/$OUTPUT_FILENAME.o"
+fi
+
+# Assemble
+as -o "./$OUTPUT_DIR/$OUTPUT_FILENAME.o" $INPUT_FILENAME
+
+if [ -f "./$OUTPUT_DIR/$OUTPUT_FILENAME" ]; then
+    # echo "Removing old HelloWorld binary"
+    rm "./$OUTPUT_DIR/$OUTPUT_FILENAME"
+fi 
+
+# Link
+ld -o "./$OUTPUT_DIR/$OUTPUT_FILENAME" "./$OUTPUT_DIR/$OUTPUT_FILENAME.o"
+
+# chmod +x "./$OUTPUT_DIR/$OUTPUT_FILENAME"
+
+# run binary
+./$OUTPUT_DIR/$OUTPUT_FILENAME
