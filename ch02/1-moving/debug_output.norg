@@ -1,0 +1,41 @@
+Running the following command will disassemble the object
+file.
+@code bash
+$ build -x ./debug
+
+objdump -s -d -M no-aliases ./out/move_examples.o
+
+./out/move_examples.o:     file format elf64-littleaarch64
+
+Contents of section .text:
+ 0000 42c78dd2 a2eba9f2 82dbdff2 8246e2f2  B............F..
+ 0010 e203012a e10702aa e10742aa e10782aa  ...*......B.....
+ 0020 e107c2aa 41f87fd3 41fc41d3 41fc4193  ....A...A.A.A.A.
+ 0030 4104c293 0160b5d2 a1058012 000080d2  A....`..........
+ 0040 a80b80d2 010000d4                    ........        
+
+Disassembly of section .text:
+
+0000000000000000 <_start>:
+   0:   d28dc742        movz    x2, #0x6e3a
+   4:   f2a9eba2        movk    x2, #0x4f5d, lsl #16
+   8:   f2dfdb82        movk    x2, #0xfedc, lsl #32
+   c:   f2e24682        movk    x2, #0x1234, lsl #48
+  10:   2a0103e2        orr     w2, wzr, w1
+  14:   aa0207e1        orr     x1, xzr, x2, lsl #1
+  18:   aa4207e1        orr     x1, xzr, x2, lsr #1
+  1c:   aa8207e1        orr     x1, xzr, x2, asr #1
+  20:   aac207e1        orr     x1, xzr, x2, ror #1
+  24:   d37ff841        ubfm    x1, x2, #63, #62
+  28:   d341fc41        ubfm    x1, x2, #1, #63
+  2c:   9341fc41        sbfm    x1, x2, #1, #63
+  30:   93c20441        extr    x1, x2, x2, #1
+  34:   d2b56001        movz    x1, #0xab00, lsl #16
+  38:   128005a1        movn    w1, #0x2d
+  3c:   d2800000        movz    x0, #0x0
+  40:   d2800ba8        movz    x8, #0x5d
+44:   d4000001        svc     #0x0
+@end
+shift intrusctions were converted to *UBFM, SBFM* and
+*EXTR* instructions. These are the underlying shift and
+rotate instructions.

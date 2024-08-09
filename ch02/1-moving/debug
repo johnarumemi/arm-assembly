@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+INPUT_FILENAME="mov_examples.s"
+OUTPUT_FILENAME="move_examples"
+
+OUTPUT_DIR="out"
+
+objdump -s -d -M no-aliases "./$OUTPUT_DIR/$OUTPUT_FILENAME.o"

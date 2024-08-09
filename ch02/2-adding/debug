@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+INPUT_FILENAME="adding.s"
+OUTPUT_FILENAME="adding"
+
+OUTPUT_DIR="out"
+
+objdump -s -d -M no-aliases "./$OUTPUT_DIR/$OUTPUT_FILENAME.o"
