@@ -1,0 +1,17 @@
+ifdef debug
+	DEBUGFLGS = -g
+else
+	DEBUGFLGS =
+endif
+
+LSTFLGS =
+
+all: multiply 
+
+# Assemble all object files from source files
+%.o : %.s
+	as $(DEBUGFLGS) $(LSTFLGS) $< -o $@
+
+multiply: multiply.s debug.s
+	gcc $(DEBUGFLGS) $(LSTFLGS) -o multiply multiply.s
+

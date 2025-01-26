@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run this script via bash -x ./build
 
-INPUT_FILENAME="hello_world.s"
+INPUT_FILENAME="HelloWorld.s"
 OUTPUT_FILENAME="HelloWorld"
 
 OUTPUT_DIR="out"

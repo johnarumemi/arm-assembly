@@ -11,6 +11,7 @@ _start: mov x2, #0x6E3A
         movk x2, #0x1234, LSL #48
 
 // just move w1 into w2
+// TODO: below is useless, since w1 is zero
 mov w2, w1
 
 mov x1, x2, LSL #1 

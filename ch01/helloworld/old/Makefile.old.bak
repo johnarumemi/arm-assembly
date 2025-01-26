@@ -1,0 +1,21 @@
+# Build the HelloWorld from HelloWorld.o
+out_dir = ./out
+bin_dir = ./out/bin
+
+# dependencies
+OBJS = HelloWorld.o
+
+# Link and Run executable
+HelloWorld: $(OBJS)
+	if [ ! -d $(bin_dir) ]; then mkdir $(bin_dir); fi
+	ld -o $(bin_dir)/HelloWorld $(out_dir)/HelloWorld.o
+
+	$(bin_dir)/HelloWorld
+
+# Assemble source file(s)
+#
+# $< : source file
+# $@ : output file
+%.o : %.s
+	if [ ! -d "$(out_dir)" ]; then mkdir $(out_dir); fi
+	as $< -o $(out_dir)/$@
